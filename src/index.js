@@ -2,11 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+require('./models/User');
+
+const {authRoutes} = require('./routes/authRoutes');
+
 const app = express();
 
 app.use(bodyParser.json());
+app.use(authRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
+const PORT = 3000;
 
 const mongoUri = 
 'mongodb://admin:' + PASSWORD + 
@@ -31,6 +37,6 @@ mongoose.connection.on('error', (err) => {
     console.error('Error Connecting to Database', err);
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Server Connected');
 });
