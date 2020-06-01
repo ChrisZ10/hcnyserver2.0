@@ -1,11 +1,18 @@
 {
-  "name": "hcny-server-2.0",
-  "version": "1.0.0",
-  "description": "HCNY Mobile App Server Side",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Lin Zhao",
-  "license": "ISC"
+	"name": "hcny-server-2.0",
+	"version": "1.0.0",
+	"description": "HCNY Mobile App Server Side",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon src/index.js"	
+	},
+	"author": "Lin Zhao",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt": "^4.0.1",
+		"express": "^4.17.1",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^5.9.16",
+		"nodemon": "^2.0.4"
+	}
 }
