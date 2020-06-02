@@ -38,44 +38,14 @@ router.post('/api/v1/config', async (req, res) => {
     }
 });
 
-router.put('/api/v1/config/sermon_youtube_id', async (req, res) => {
-    const {id} = req.body;
+router.put('/api/v1/config', async (req, res) => {
+    const {field, payload} = req.body;
 
     try {
-        const config = await Configuration.findOneAndUpdate({}, {sermonYoutubeId: id}, {new: true});
-        res.send({config});
-    } catch (err) {
-        return res.status(422).send(err.message);
-    }
-});
+        const config = await Configuration.findOne();
+        config[field] = payload;
+        await config.save();
 
-router.put('/api/v1/config/ch_live_stream', async (req, res) => {
-    const {url} = req.body;
-
-    try {
-        const config = await Configuration.findOneAndUpdate({}, {chLiveStreamUrl: url}, {new: true});
-        res.send({config});
-    } catch (err) {
-        return res.status(422).send(err.message);
-    }
-});
-
-router.put('/api/v1/config/en_live_stream', async (req, res) => {
-    const {url} = req.body;
-
-    try {
-        const config = await Configuration.findOneAndUpdate({}, {enLiveStreamUrl: url}, {new: true});
-        res.send({config});
-    } catch (err) {
-        return res.status(422).send(err.message);
-    }
-});
-
-router.put('/api/v1/config/weekly_brochure', async (req, res) => {
-    const {url} = req.body;
-
-    try {
-        const config = await Configuration.findOneAndUpdate({}, {weeklyBrochureUrl: url}, {new: true});
         res.send({config});
     } catch (err) {
         return res.status(422).send(err.message);
