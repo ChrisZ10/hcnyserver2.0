@@ -2,14 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
+require('./models/Configuration');
 require('./models/User');
 
 const {authRoutes} = require('./routes/authRoutes');
+const configRoutes = require('./routes/configRoutes');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(authRoutes);
+app.use(configRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
 const PORT = 3000;
@@ -26,7 +29,8 @@ mongoose.set('useFindAndModify', false);
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    dbName: 'hcnydb'
 });
 
 mongoose.connection.on('connected', () => {
