@@ -37,13 +37,32 @@ router.post('/signin', async (req, res) => {
     try {
         const match = await user.comparePassword(password);
         if (match) {
-            const token = jwt.sign({id:user._id}, SECRET_KEY);
+            const token = jwt.sign({id: user._id}, SECRET_KEY);
             res.send({token});
         } else {
             return res.status(400).send('密碼輸入錯誤');
         }
     } catch (err) {
         return res.status(500).send(err.message);
+    }
+});
+
+router.put('/reset', async (req, res) => {
+    const {email, password} = req.body;
+
+    if (!email || !password) {
+        return res.status(400).send('郵箱或密碼不能為空');
+    }
+
+    try {
+        const user = await User.findOne({email});
+        user.password = password;
+        await user.save();
+
+        const token = jwt.sign({id: user._id}, SECRET_KEY);
+        res.send({token});
+    } catch (err) {
+        return res.status(400).send('此賬號不存在');
     }
 });
 
