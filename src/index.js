@@ -7,12 +7,14 @@ require('./models/User');
 
 const {authRoutes} = require('./routes/authRoutes');
 const configRoutes = require('./routes/configRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(configRoutes);
+app.use(userRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
 const PORT = 3000;
