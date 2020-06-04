@@ -7,7 +7,6 @@ const reqRole = require('../middlewares/reqRole');
 const router = express.Router();
 
 router.use(reqAuth);
-router.use(reqRole);
 
 router.get('/config', async (req, res) => {
     try {
@@ -18,7 +17,7 @@ router.get('/config', async (req, res) => {
     }
 });
 
-router.post('/api/v1/config', async (req, res) => {
+router.post('/api/v1/config', reqRole, async (req, res) => {
     try {
         const count = await Configuration.countDocuments({});
         if (count > 0) { //singleton
@@ -38,7 +37,7 @@ router.post('/api/v1/config', async (req, res) => {
     }
 });
 
-router.put('/api/v1/config', async (req, res) => {
+router.put('/api/v1/config', reqRole, async (req, res) => {
     const {field, payload} = req.body;
 
     try {
