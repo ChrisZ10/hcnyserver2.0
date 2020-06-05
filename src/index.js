@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 
 require('./models/Configuration');
 require('./models/User');
+require('./models/Announcement');
 
 const {authRoutes} = require('./routes/authRoutes');
 const configRoutes = require('./routes/configRoutes');
