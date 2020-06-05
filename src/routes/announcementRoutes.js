@@ -52,4 +52,15 @@ router.put('/api/v1/announcement', reqRole, async (req, res) => {
     }
 });
 
+router.delete('/api/v1/announcement', reqRole, async (req, res) => {
+    const {id} = req.body;
+
+    try {
+        const announcement = await Announcement.findByIdAndDelete(id);
+        res.send({announcement});
+    } catch (err) {
+        return res.status(500).send(err.message);
+    }
+});
+
 module.exports = router;
