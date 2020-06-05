@@ -5,11 +5,13 @@ const bodyParser = require('body-parser');
 require('./models/Configuration');
 require('./models/User');
 require('./models/Announcement');
+require('./models/Note');
 
 const {authRoutes} = require('./routes/authRoutes');
 const configRoutes = require('./routes/configRoutes');
 const userRoutes = require('./routes/userRoutes');
 const announcementRoutes = require('./routes/announcementRoutes');
+const noteRoutes = require('./routes/noteRoutes');
 
 const app = express();
 
@@ -18,6 +20,7 @@ app.use(authRoutes);
 app.use(configRoutes);
 app.use(userRoutes);
 app.use(announcementRoutes);
+app.use(noteRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
 const PORT = 3000;
