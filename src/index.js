@@ -13,6 +13,7 @@ const configRoutes = require('./routes/configRoutes');
 const userRoutes = require('./routes/userRoutes');
 const announcementRoutes = require('./routes/announcementRoutes');
 const noteRoutes = require('./routes/noteRoutes');
+const courseRoutes = require('./routes/courseRoutes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(configRoutes);
 app.use(userRoutes);
 app.use(announcementRoutes);
 app.use(noteRoutes);
+app.use(courseRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
 const PORT = 3000;
