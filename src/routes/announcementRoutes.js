@@ -26,4 +26,16 @@ router.get('/announcements', async (req, res) => {
     }
 });
 
+router.post('/api/v1/announcement', reqRole, async (req, res) => {
+    const {title, content, url} = req.body;
+    try {
+        const announcement = new Announcement({title, content, url});
+        await announcement.save();
+
+        res.send({announcement});
+    } catch (err) {
+        return res.status(422).send(err.message);
+    }
+});
+
 module.exports = router;
