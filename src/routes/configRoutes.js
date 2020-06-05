@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Configuration = mongoose.model('Configuration');
 const reqAuth = require('../middlewares/reqAuth');
-const reqRole = require('../middlewares/reqRole');
+const reqAdmin = require('../middlewares/reqAdmin');
 
 const router = express.Router();
 
@@ -17,7 +17,7 @@ router.get('/config', async (req, res) => {
     }
 });
 
-router.post('/api/v1/config', reqRole, async (req, res) => {
+router.post('/api/v1/config', reqAdmin, async (req, res) => {
     try {
         const count = await Configuration.countDocuments({});
         if (count > 0) { //singleton
@@ -36,7 +36,7 @@ router.post('/api/v1/config', reqRole, async (req, res) => {
     }
 });
 
-router.put('/api/v1/config', reqRole, async (req, res) => {
+router.put('/api/v1/config', reqAdmin, async (req, res) => {
     const {field, payload} = req.body;
 
     try {

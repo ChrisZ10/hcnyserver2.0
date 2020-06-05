@@ -23,6 +23,10 @@ const userSchema = new mongoose.Schema({
     lastname: {
         type: String,
         default: ''
+    },
+    group: {
+        type: String,
+        default: ''
     }
 }, {
     versionKey: false,

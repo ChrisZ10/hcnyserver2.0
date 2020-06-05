@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Announcement = mongoose.model('Announcement');
 const reqAuth = require('../middlewares/reqAuth');
-const reqRole = require('../middlewares/reqRole');
+const reqAdmin = require('../middlewares/reqAdmin');
 
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.get('/announcements', async (req, res) => {
     }
 });
 
-router.post('/api/v1/announcement', reqRole, async (req, res) => {
+router.post('/api/v1/announcement', reqAdmin, async (req, res) => {
     const {title, content, url} = req.body;
     
     try {
@@ -38,7 +38,7 @@ router.post('/api/v1/announcement', reqRole, async (req, res) => {
     }
 });
 
-router.put('/api/v1/announcement', reqRole, async (req, res) => {
+router.put('/api/v1/announcement', reqAdmin, async (req, res) => {
     const {id, field, payload} = req.body;
 
     try {
@@ -51,7 +51,7 @@ router.put('/api/v1/announcement', reqRole, async (req, res) => {
     }
 });
 
-router.delete('/api/v1/announcement', reqRole, async (req, res) => {
+router.delete('/api/v1/announcement', reqAdmin, async (req, res) => {
     const {id} = req.body;
 
     try {
