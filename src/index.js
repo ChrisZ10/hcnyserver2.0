@@ -6,6 +6,7 @@ require('./models/Configuration');
 require('./models/User');
 require('./models/Announcement');
 require('./models/Note');
+require('./models/Course');
 
 const {authRoutes} = require('./routes/authRoutes');
 const configRoutes = require('./routes/configRoutes');
