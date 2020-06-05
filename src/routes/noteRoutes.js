@@ -37,4 +37,24 @@ router.post('/api/v1/note', async (req, res) => {
     }
 });
 
+router.put('/api/v1/note', async (req, res) => {
+    const {title, content} = req.body;
+    
+    if (title === '') {
+        return res.status(400).send('筆記標題不能為空');
+    }
+
+    try {
+        const note = await Note.findOneAndUpdate({
+            $and: [
+                {title: title}, 
+                {userId: req.user._id}
+            ]}, {content: content}, {new: true}
+        );
+        res.send({note});
+    } catch (err) {
+        return res.status(500).send(err.message);
+    }
+});
+
 module.exports = router;
