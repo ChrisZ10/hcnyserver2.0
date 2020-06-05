@@ -43,4 +43,15 @@ router.put('/api/v1/course', reqRole, async (req, res) => {
     }
 });
 
+router.delete('/api/v1/course', reqRole, async (req, res) => {
+    const {id} = req.body;
+
+    try {
+        const course = await Course.findByIdAndDelete(id);
+        res.send({course});
+    } catch (err) {
+        return res.status(500).send(err.message);
+    }
+});
+
 module.exports = router;
