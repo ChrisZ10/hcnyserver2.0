@@ -30,7 +30,6 @@ router.post('/api/v1/config', reqRole, async (req, res) => {
     try {
         const config = new Configuration();
         await config.save();
-
         res.send({config});
     } catch (err) {
         return res.status(422).send(err.message);
@@ -44,7 +43,6 @@ router.put('/api/v1/config', reqRole, async (req, res) => {
         const config = await Configuration.findOne();
         config[field] = payload;
         await config.save();
-
         res.send({config});
     } catch (err) {
         return res.status(422).send(err.message);

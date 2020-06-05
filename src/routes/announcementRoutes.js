@@ -32,7 +32,6 @@ router.post('/api/v1/announcement', reqRole, async (req, res) => {
     try {
         const announcement = new Announcement({title, content, url});
         await announcement.save();
-
         res.send({announcement});
     } catch (err) {
         return res.status(422).send(err.message);
@@ -46,7 +45,6 @@ router.put('/api/v1/announcement', reqRole, async (req, res) => {
         const announcement = await Announcement.findById(id);
         announcement[field] = payload;
         await announcement.save();
-
         res.send({announcement});
     } catch (err) {
         return res.status(422).send(err.message);
