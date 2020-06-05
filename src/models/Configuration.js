@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const configurationSchema = mongoose.Schema({
+    sermonTitle: {
+        type: String,
+        default: ''
+    },
     sermonYoutubeId: {
         type: String,
         default: ''
