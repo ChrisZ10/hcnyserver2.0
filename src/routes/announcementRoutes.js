@@ -38,4 +38,18 @@ router.post('/api/v1/announcement', reqRole, async (req, res) => {
     }
 });
 
+router.put('/api/v1/announcement', reqRole, async (req, res) => {
+    const {id, field, payload} = req.body;
+
+    try {
+        const announcement = await Announcement.findById(id);
+        announcement[field] = payload;
+        await announcement.save();
+
+        res.send({announcement});
+    } catch (err) {
+        return res.status(422).send(err.message);
+    }
+});
+
 module.exports = router;
