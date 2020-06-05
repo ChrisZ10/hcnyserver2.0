@@ -57,4 +57,20 @@ router.put('/api/v1/note', async (req, res) => {
     }
 });
 
+router.delete('/api/v1/note', async (req, res) => {
+    const {title} = req.body;
+    
+    try {
+        const note = await Note.findOneAndDelete({
+            $and: [
+                {title: title},
+                {userId: req.user._id}
+            ]
+        });
+        res.send({note});
+    } catch (err) {
+        return res.status(500).send(err.message);
+    }
+});
+
 module.exports = router;

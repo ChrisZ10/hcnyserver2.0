@@ -28,6 +28,7 @@ router.get('/announcements', async (req, res) => {
 
 router.post('/api/v1/announcement', reqRole, async (req, res) => {
     const {title, content, url} = req.body;
+    
     try {
         const announcement = new Announcement({title, content, url});
         await announcement.save();
