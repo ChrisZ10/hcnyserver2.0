@@ -29,4 +29,18 @@ router.post('/api/v1/course', reqRole, async (req, res) => {
     }
 });
 
+router.put('/api/v1/course', reqRole, async (req, res) => {
+    const {id, field, payload} = req.body;
+
+    try {
+        const course = await Course.findById(id);
+        course[field] = payload;
+        await course.save();
+
+        res.send({course});
+    } catch (err) {
+        return res.status(422).send(err.message);
+    }
+});
+
 module.exports = router;
