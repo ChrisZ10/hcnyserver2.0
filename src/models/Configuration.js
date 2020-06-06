@@ -17,14 +17,6 @@ const configurationSchema = mongoose.Schema({
         type: String,
         default: ''
     },
-    chLiveStreamUrl: {
-        type: String,
-        default: ''
-    },
-    enLiveStreamUrl: {
-        type: String,
-        default: ''
-    },
     prayerRequestUrl: {
         type: String,
         default: ''
@@ -33,6 +25,16 @@ const configurationSchema = mongoose.Schema({
         type: [{
             name: String,
             zoomId: String
+        }],
+        default: []
+    },
+    schedule: {
+        type: [{
+            schedule: String,
+            liveUrl: {
+                type: String,
+                default: ''
+            }
         }],
         default: []
     }
