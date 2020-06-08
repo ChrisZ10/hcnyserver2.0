@@ -17,7 +17,7 @@ router.get('/announcements', async (req, res) => {
                 {'title': {$regex: `${req.query.keyword}`}}, 
                 {'content': {$regex: `${req.query.keyword}`}}
             ]
-        }) :
+        }, null, {sort: {createdAt: -1}}) :
         announcements = await Announcement.find({}, null, {sort: {createdAt: -1}});
 
         res.send({announcements});
