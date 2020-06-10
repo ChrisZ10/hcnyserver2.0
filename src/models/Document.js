@@ -10,7 +10,13 @@ const documentSchema = new mongoose.Schema({
         default: ''
     },
     attachment: {
-        type: [String],
+        type: [{
+            title: String,
+            url: {
+                type: String,
+                default: ''
+            }
+        }],
         default: []
     }
 }, {
