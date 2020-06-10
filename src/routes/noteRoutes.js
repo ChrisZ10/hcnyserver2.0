@@ -8,8 +8,11 @@ const router = express.Router();
 router.use(reqAuth);
 
 router.get('/notes', async (req, res) => {
+    let notes;
     try {
-        const notes = await Note.find({userId: req.user._id}, null, {sort: {createdAt: -1}});
+        req.query.title?
+        notes = await Note.find({$and: [{title: req.query.title}, {userId: req.user._id}]}) :
+        notes = await Note.find({userId: req.user._id}, null, {sort: {createdAt: -1}});
         res.send({notes});
     } catch (err) {
         return res.status(500).send(err.message);
