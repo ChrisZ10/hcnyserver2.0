@@ -61,12 +61,10 @@ router.put('/api/v1/note', async (req, res) => {
 });
 
 router.delete('/api/v1/note', async (req, res) => {
-    const {title} = req.body;
-    
     try {
         const note = await Note.findOneAndDelete({
             $and: [
-                {title: title},
+                {title: req.query.title},
                 {userId: req.user._id}
             ]
         });
