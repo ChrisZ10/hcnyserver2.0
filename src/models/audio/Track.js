@@ -5,21 +5,34 @@ const trackSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    slug: {
+        type: String,
+        required: true
+    },
+    uri: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         default: ''
     },
-    url: {
+    author: {
         type: String,
-        required: true
+        default: ''
+    },
+    cover: {
+        type: String,
+        default: ''
+    },
+    album: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Album',
+        default: null
     },
     tags: {
         type: [String],
         default: []
-    },
-    album: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Album'
     }
 }, {
     timestamps: true,

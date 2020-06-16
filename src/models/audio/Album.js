@@ -5,13 +5,30 @@ const albumSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    slug: {
+        type: String,
+        required: true
+    },
     description: {
+        type: String,
+        default: ''
+    },
+    author: {
+        type: String,
+        default: ''
+    },
+    cover: {
         type: String,
         default: ''
     },
     collection: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Collection'
+        ref: 'Collection',
+        default: null
+    },
+    tags: {
+        type: [String],
+        default: []
     }
 }, {
     timestamps: true,

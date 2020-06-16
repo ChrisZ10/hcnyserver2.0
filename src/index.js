@@ -9,6 +9,10 @@ require('./models/Note');
 require('./models/Course');
 require('./models/Document');
 
+require('./models/audio/Track');
+require('./models/audio/Album');
+require('./models/audio/Collection');
+
 const {authRoutes} = require('./routes/authRoutes');
 const configRoutes = require('./routes/configRoutes');
 const userRoutes = require('./routes/userRoutes');
