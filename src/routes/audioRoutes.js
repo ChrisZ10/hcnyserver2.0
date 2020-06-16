@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const Track = mongoose.model('Track');
 const Album = mongoose.model('Album');
-const Collection = mongoose.model('Collection');
+const Playlist = mongoose.model('Playlist');
 
 const reqAuth = require('../middlewares/reqAuth');
 const reqAdmin = require('../middlewares/reqAdmin');
@@ -41,13 +41,13 @@ router.post('/api/v1/tracks', reqAdmin, async (req, res) => {
 });
 
 router.post('/api/v1/albums', reqAdmin, async (req, res) => {
-    const {title, slug, collection_slug} = req.body;
+    const {title, slug, playlist_slug} = req.body;
     
     try {
-        const collection = await Collection.findOne({slug: collection_slug});
+        const playlist = await Playlist.findOne({slug: playlist_slug});
         let album;
-        if (collection) {
-            album = new Album({title, slug, collection: collection._id});
+        if (playlist) {
+            album = new Album({title, slug, playlist: playlist._id});
         } else {
             album = new Album({title, slug});
         }
@@ -58,13 +58,13 @@ router.post('/api/v1/albums', reqAdmin, async (req, res) => {
     } 
 });
 
-router.post('/api/v1/collections', reqAdmin, async (req, res) => {
+router.post('/api/v1/playlists', reqAdmin, async (req, res) => {
     const {title, slug} = req.body;
     
     try {
-        const collection = new Collection({title, slug});
-        await collection.save();
-        res.send({collection});
+        const playlist = new Playlist({title, slug});
+        await playlist.save();
+        res.send({playlist});
     } catch (err) {
         return res.status(500).send(err.message);
     } 

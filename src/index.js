@@ -11,7 +11,7 @@ require('./models/Document');
 
 require('./models/audio/Track');
 require('./models/audio/Album');
-require('./models/audio/Collection');
+require('./models/audio/Playlist');
 
 const {authRoutes} = require('./routes/authRoutes');
 const configRoutes = require('./routes/configRoutes');

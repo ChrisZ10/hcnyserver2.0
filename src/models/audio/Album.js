@@ -21,9 +21,9 @@ const albumSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    collection: {
+    playlist: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Collection',
+        ref: 'Playlist',
         default: null
     },
     tags: {

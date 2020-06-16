@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const collectionSchema = new mongoose.Schema({
+const playlistSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -30,4 +30,4 @@ const collectionSchema = new mongoose.Schema({
     versionKey: false
 });
 
-mongoose.model('Collection', collectionSchema);
+mongoose.model('Playlist', playlistSchema);
