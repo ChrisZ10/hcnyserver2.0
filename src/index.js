@@ -20,6 +20,7 @@ const announcementRoutes = require('./routes/announcementRoutes');
 const noteRoutes = require('./routes/noteRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const documentRoutes = require('./routes/documentRoutes');
+const audioRoutes = require('./routes/audioRoutes');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use(announcementRoutes);
 app.use(noteRoutes);
 app.use(courseRoutes);
 app.use(documentRoutes);
+app.use(audioRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
 const PORT = 3000;
