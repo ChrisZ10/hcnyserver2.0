@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema({
     group: {
         type: String,
         default: ''
+    },
+    verified: {
+        type: Boolean,
+        default: false
     }
 }, {
     versionKey: false,
