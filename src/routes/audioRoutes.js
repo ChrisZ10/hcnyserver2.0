@@ -22,6 +22,15 @@ router.get('/tracks', async (req, res) => {
     }    
 });
 
+router.get('/playlists', async (req, res) => {
+    try {
+        const playlists = await Playlist.find();
+        res.send({playlists});
+    } catch (err) {
+        return res.status(500).send(err.message);
+    }
+});
+
 router.post('/api/v1/tracks', reqAdmin, async (req, res) => {
     const {title, slug, uri, album_slug} = req.body;
     
