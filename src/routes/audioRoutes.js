@@ -13,10 +13,21 @@ const router = express.Router();
 router.use(reqAuth);
 
 router.get('/tracks', async (req, res) => {
-    const slug = req.query.slug;
+    const {slug, album_slug} = req.query;
     try {
-        const track = await Track.findOne({slug});
-        res.send({track});
+        if (slug) {
+            const track = await Track.findOne({slug});
+            res.send({track});
+            return;
+        }
+
+        if (album_slug) {
+            const album = await Album.findOne({slug: album_slug});
+            if (album) {
+                const tracks = await Track.find({album: album._id});
+                res.send({tracks});
+            }
+        }
     } catch (err) {
         return res.status(500).send(err.message);
     }    
@@ -26,6 +37,19 @@ router.get('/playlists', async (req, res) => {
     try {
         const playlists = await Playlist.find();
         res.send({playlists});
+    } catch (err) {
+        return res.status(500).send(err.message);
+    }
+});
+
+router.get('/albums', async (req, res) => {
+    const playlist_slug = req.query.playlist_slug;
+    try {
+        const playlist = await Playlist.findOne({slug: playlist_slug});
+        if (playlist) {
+            const albums = await Album.find({playlist: playlist._id});
+            res.send({albums});
+        }
     } catch (err) {
         return res.status(500).send(err.message);
     }
