@@ -4,6 +4,7 @@
 	"description": "HCNY Mobile App Server Side",
 	"main": "index.js",
 	"scripts": {
+		"start": "node index.js",
 		"dev": "nodemon src/index.js"	
 	},
 	"author": "Lin Zhao",
