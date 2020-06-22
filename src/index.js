@@ -35,7 +35,7 @@ app.use(documentRoutes);
 app.use(audioRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
-const PORT = 3000;
+const PORT = process.env.PORT || 80;
 
 const mongoUri = 
 'mongodb://admin:' + PASSWORD + 
