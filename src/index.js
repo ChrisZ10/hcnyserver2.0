@@ -61,6 +61,10 @@ mongoose.connection.on('error', (err) => {
     console.error('Error Connecting to Database', err);
 });
 
+app.get('/', (req, res) => {
+    res.send('Server Running');
+});
+
 app.listen(PORT, () => {
     console.log('Server Connected');
 });
