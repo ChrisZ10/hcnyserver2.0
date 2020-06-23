@@ -46,7 +46,7 @@ const mongoUri =
 
 mongoose.set('useFindAndModify', false);
 
-mongoose.connect(process.env.MONGODB_URI || mongoUri, {
+mongoose.connect(process.env.MONGODB_URL || mongoUri, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
