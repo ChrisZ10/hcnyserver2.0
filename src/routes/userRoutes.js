@@ -79,15 +79,16 @@ router.post('/api/v1/user/tokens', async (req, res) => {
         for (singleToken of user.expoPushToken) {
             if (singleToken === token) {
                 existing = true;
-                return;
+                break;
             }
         }
 
         if (!existing) {
             user.expoPushToken.push(token);
             await user.save();
-            res.send({user});
         }
+
+        res.send({user});
 
     } catch (err) {
         return res.status(422).send(err.message);
