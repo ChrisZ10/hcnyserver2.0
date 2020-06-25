@@ -31,6 +31,10 @@ const userSchema = new mongoose.Schema({
     verified: {
         type: Boolean,
         default: false
+    },
+    expoPushToken: {
+        type: [String],
+        default: []
     }
 }, {
     versionKey: false,

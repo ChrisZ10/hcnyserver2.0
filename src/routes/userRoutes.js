@@ -69,4 +69,29 @@ router.put('/api/v1/user/role', reqAdmin, async (req, res) => {
     }
 });
 
+router.post('/api/v1/user/tokens', async (req, res) => {
+    const {token} = req.body;
+
+    try {
+        const user = await User.findById(req.user._id);
+        
+        let existing = false;
+        for (singleToken of user.expoPushToken) {
+            if (singleToken === token) {
+                existing = true;
+                return;
+            }
+        }
+
+        if (!existing) {
+            user.expoPushToken.push(token);
+            await user.save();
+            res.send({user});
+        }
+
+    } catch (err) {
+        return res.status(422).send(err.message);
+    }
+});
+
 module.exports = router;
