@@ -1,10 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Announcement = mongoose.model('Announcement');
+const User = mongoose.model('User');
 const reqAuth = require('../middlewares/reqAuth');
 const reqAdmin = require('../middlewares/reqAdmin');
+const {Expo} = require('expo-server-sdk');
 
 const router = express.Router();
+
+let expo = new Expo();
 
 router.use(reqAuth);
 
@@ -63,3 +67,42 @@ router.delete('/api/v1/announcement', reqAdmin, async (req, res) => {
 });
 
 module.exports = router;
+
+/*** test ***/
+let tokens = [];
+let messages = [];
+
+const sendNotification = async () => {
+    const users = await User.find({});
+    for (user of users) {
+        for (token of user.expoPushToken) {
+            tokens.push(token);
+        }
+    }
+    tokens = [...new Set(tokens)];
+
+    for (token of tokens) {
+        if (!Expo.isExpoPushToken(token)) {
+            console.error(`Push token ${token} is not a valid Expo push token`);
+            continue;
+        }
+        messages.push({
+            to: token,
+            sound: 'default',
+            body: 'This is a test notification',
+            data: {test: 'test'}
+        });
+    }
+
+    let chunks = expo.chunkPushNotifications(messages);
+    for (chunk of chunks) {
+        try {
+            let ticket = await expo.sendPushNotificationsAsync(chunk);
+            console.log(ticket);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+};
+
+sendNotification();
