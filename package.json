@@ -5,12 +5,13 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "node src/index.js",
-		"dev": "nodemon src/index.js"	
+		"dev": "nodemon src/index.js"
 	},
 	"author": "Lin Zhao",
 	"license": "ISC",
 	"dependencies": {
 		"bcrypt": "^4.0.1",
+		"expo-server-sdk": "^3.5.0",
 		"express": "^4.17.1",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.9.16",
