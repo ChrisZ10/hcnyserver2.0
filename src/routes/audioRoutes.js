@@ -74,7 +74,7 @@ router.post('/api/v1/tracks', reqAdmin, async (req, res) => {
 });
 
 router.post('/api/v1/albums', reqAdmin, async (req, res) => {
-    const {title, slug, playlist_slug} = req.body;
+    const {title, slug, playlist_slug, tags} = req.body;
     
     try {
         const playlist = await Playlist.findOne({slug: playlist_slug});
@@ -84,6 +84,7 @@ router.post('/api/v1/albums', reqAdmin, async (req, res) => {
         } else {
             album = new Album({title, slug});
         }
+        album.tags = [...tags];
         await album.save();
         res.send({album});
     } catch (err) {
