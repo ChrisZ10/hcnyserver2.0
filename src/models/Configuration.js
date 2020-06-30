@@ -28,15 +28,17 @@ const configurationSchema = mongoose.Schema({
         }],
         default: []
     },
-    schedule: {
-        type: [{
-            schedule: String,
-            liveUrl: {
-                type: String,
-                default: ''
-            }
-        }],
-        default: []
+    chineseSchedule: {
+        type: {
+            name: String,
+            liveUrl: String
+        }
+    },
+    englishSchedule: {
+        type: {
+            name: String,
+            liveUrl: String
+        }
     }
 }, {
     timestamps: true,
