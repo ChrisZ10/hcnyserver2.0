@@ -68,41 +68,44 @@ router.delete('/api/v1/announcement', reqAdmin, async (req, res) => {
 
 module.exports = router;
 
-/*** test ***/
-let tokens = [];
-let messages = [];
+/** 
+* send notification 
+*/
 
-const sendNotification = async () => {
-    const users = await User.find({});
-    for (user of users) {
-        for (token of user.expoPushToken) {
-            tokens.push(token);
-        }
-    }
-    tokens = [...new Set(tokens)];
+// let tokens = [];
+// let messages = [];
 
-    for (token of tokens) {
-        if (!Expo.isExpoPushToken(token)) {
-            console.error(`Push token ${token} is not a valid Expo push token`);
-            continue;
-        }
-        messages.push({
-            to: token,
-            sound: 'default',
-            body: 'This is a test notification',
-            data: {test: 'test'}
-        });
-    }
+// const sendNotification = async () => {
+//     const users = await User.find({});
+//     for (user of users) {
+//         for (token of user.expoPushToken) {
+//             tokens.push(token);
+//         }
+//     }
+//     tokens = [...new Set(tokens)];
 
-    let chunks = expo.chunkPushNotifications(messages);
-    for (chunk of chunks) {
-        try {
-            let ticket = await expo.sendPushNotificationsAsync(chunk);
-            console.log(ticket);
-        } catch (err) {
-            console.log(err);
-        }
-    }
-};
+//     for (token of tokens) {
+//         if (!Expo.isExpoPushToken(token)) {
+//             console.error(`Push token ${token} is not a valid Expo push token`);
+//             continue;
+//         }
+//         messages.push({
+//             to: token,
+//             sound: 'default',
+//             body: 'This is a test notification',
+//             data: {test: 'test'}
+//         });
+//     }
 
-sendNotification();
+//     let chunks = expo.chunkPushNotifications(messages);
+//     for (chunk of chunks) {
+//         try {
+//             let ticket = await expo.sendPushNotificationsAsync(chunk);
+//             console.log(ticket);
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     }
+// };
+
+// sendNotification();
