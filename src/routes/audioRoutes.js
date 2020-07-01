@@ -10,8 +10,6 @@ const reqAdmin = require('../middlewares/reqAdmin');
 
 const router = express.Router();
 
-router.use(reqAuth);
-
 router.get('/tracks', async (req, res) => {
     const {slug, album_slug} = req.query;
     try {
@@ -55,7 +53,7 @@ router.get('/albums', async (req, res) => {
     }
 });
 
-router.post('/api/v1/tracks', reqAdmin, async (req, res) => {
+router.post('/api/v1/tracks', [reqAuth, reqAdmin], async (req, res) => {
     const {title, slug, uri, album_slug} = req.body;
     
     try {
@@ -73,7 +71,7 @@ router.post('/api/v1/tracks', reqAdmin, async (req, res) => {
     }
 });
 
-router.post('/api/v1/albums', reqAdmin, async (req, res) => {
+router.post('/api/v1/albums', [reqAuth, reqAdmin], async (req, res) => {
     const {title, slug, playlist_slug, tags} = req.body;
     
     try {
@@ -92,7 +90,7 @@ router.post('/api/v1/albums', reqAdmin, async (req, res) => {
     } 
 });
 
-router.post('/api/v1/playlists', reqAdmin, async (req, res) => {
+router.post('/api/v1/playlists', [reqAuth, reqAdmin], async (req, res) => {
     const {title, slug} = req.body;
     
     try {
