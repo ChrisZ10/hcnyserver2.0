@@ -34,7 +34,7 @@ router.get('/tracks', async (req, res) => {
 router.get('/playlists', async (req, res) => {
     try {
         const playlists = await Playlist.find();
-        res.send({playlists});
+        res.send(playlists);
     } catch (err) {
         return res.status(500).send(err.message);
     }

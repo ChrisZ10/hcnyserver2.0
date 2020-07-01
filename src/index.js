@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 require('./models/Configuration');
 require('./models/User');
@@ -23,6 +24,8 @@ const documentRoutes = require('./routes/documentRoutes');
 const audioRoutes = require('./routes/audioRoutes');
 
 const app = express();
+
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(authRoutes);
