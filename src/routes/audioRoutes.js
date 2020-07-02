@@ -15,7 +15,7 @@ router.get('/tracks', async (req, res) => {
     try {
         if (slug) {
             const track = await Track.findOne({slug});
-            res.send({track});
+            res.send(track);
             return;
         }
 
