@@ -23,7 +23,7 @@ router.get('/tracks', async (req, res) => {
             const album = await Album.findOne({slug: album_slug});
             if (album) {
                 const tracks = await Track.find({album: album._id});
-                res.send({tracks});
+                res.send(tracks);
             }
         }
     } catch (err) {
@@ -46,7 +46,7 @@ router.get('/albums', async (req, res) => {
         const playlist = await Playlist.findOne({slug: playlist_slug});
         if (playlist) {
             const albums = await Album.find({playlist: playlist._id});
-            res.send({albums});
+            res.send(albums);
         }
     } catch (err) {
         return res.status(500).send(err.message);
@@ -65,7 +65,7 @@ router.post('/api/v1/tracks', [reqAuth, reqAdmin], async (req, res) => {
             track = new Track({title, slug, uri});
         }
         await track.save();
-        res.send({track});
+        res.send(track);
     } catch (err) {
         return res.status(500).send(err.message);
     }
@@ -84,7 +84,7 @@ router.post('/api/v1/albums', [reqAuth, reqAdmin], async (req, res) => {
         }
         album.tags = [...tags];
         await album.save();
-        res.send({album});
+        res.send(album);
     } catch (err) {
         return res.status(500).send(err.message);
     } 
@@ -96,7 +96,7 @@ router.post('/api/v1/playlists', [reqAuth, reqAdmin], async (req, res) => {
     try {
         const playlist = new Playlist({title, slug});
         await playlist.save();
-        res.send({playlist});
+        res.send(playlist);
     } catch (err) {
         return res.status(500).send(err.message);
     } 
