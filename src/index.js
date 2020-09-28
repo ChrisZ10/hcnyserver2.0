@@ -21,7 +21,7 @@ const announcementRoutes = require('./routes/announcementRoutes');
 const noteRoutes = require('./routes/noteRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const documentRoutes = require('./routes/documentRoutes');
-const audioRoutes = require('./routes/audioRoutes');
+// const audioRoutes = require('./routes/audioRoutes');
 
 const app = express();
 
@@ -30,15 +30,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(configRoutes);
-app.use(userRoutes);
 app.use(announcementRoutes);
-app.use(noteRoutes);
 app.use(courseRoutes);
 app.use(documentRoutes);
-app.use(audioRoutes);
+// app.use(audioRoutes);
+app.use(userRoutes);
+app.use(noteRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 3000;
 
 const mongoUri = 
 'mongodb://admin:' + PASSWORD + 
