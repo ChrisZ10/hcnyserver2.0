@@ -1,16 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Announcement = mongoose.model('Announcement');
-const User = mongoose.model('User');
-const reqAuth = require('../middlewares/reqAuth');
+// const User = mongoose.model('User');
 const reqAdmin = require('../middlewares/reqAdmin');
-const {Expo} = require('expo-server-sdk');
+// const {Expo} = require('expo-server-sdk');
 
 const router = express.Router();
 
-let expo = new Expo();
-
-router.use(reqAuth);
+// let expo = new Expo();
 
 router.get('/announcements', async (req, res) => {
     let announcements;

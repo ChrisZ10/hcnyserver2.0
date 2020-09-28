@@ -1,12 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Document = mongoose.model('Document');
-const reqAuth = require('../middlewares/reqAuth');
 const reqAdmin = require('../middlewares/reqAdmin');
 
 const router = express.Router();
-
-router.use(reqAuth);
 
 router.get('/documents', async (req, res) => {
     try {
