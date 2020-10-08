@@ -21,7 +21,7 @@ const announcementRoutes = require('./routes/announcementRoutes');
 const noteRoutes = require('./routes/noteRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const documentRoutes = require('./routes/documentRoutes');
-// const audioRoutes = require('./routes/audioRoutes');
+const audioRoutes = require('./routes/audioRoutes');
 
 const app = express();
 
