@@ -33,9 +33,9 @@ app.use(configRoutes);
 app.use(announcementRoutes);
 app.use(courseRoutes);
 app.use(documentRoutes);
-// app.use(audioRoutes);
 app.use(userRoutes);
 app.use(noteRoutes);
+app.use(audioRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
 const PORT = process.env.PORT || 3000;
