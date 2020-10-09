@@ -28,7 +28,7 @@ router.post('/api/v1/course', [reqAuth, reqAdmin], async (req, res) => {
     }
 });
 
-router.put('/api/v1/course', reqAdmin, async (req, res) => {
+router.put('/api/v1/course', [reqAuth, reqAdmin], async (req, res) => {
     const {id, field, payload} = req.body;
 
     try {
@@ -41,7 +41,7 @@ router.put('/api/v1/course', reqAdmin, async (req, res) => {
     }
 });
 
-router.delete('/api/v1/course', reqAdmin, async (req, res) => {
+router.delete('/api/v1/course', [reqAuth, reqAdmin], async (req, res) => {
     const {id} = req.body;
 
     try {

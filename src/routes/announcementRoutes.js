@@ -2,7 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Announcement = mongoose.model('Announcement');
 // const User = mongoose.model('User');
+
+const reqAuth = require('../middlewares/reqAuth');
 const reqAdmin = require('../middlewares/reqAdmin');
+
 // const {Expo} = require('expo-server-sdk');
 
 const router = express.Router();
@@ -27,7 +30,7 @@ router.get('/announcements', async (req, res) => {
     }
 });
 
-router.post('/api/v1/announcement', reqAdmin, async (req, res) => {
+router.post('/api/v1/announcement', [reqAuth, reqAdmin], async (req, res) => {
     const {title, content, url} = req.body;
     
     try {
@@ -39,7 +42,7 @@ router.post('/api/v1/announcement', reqAdmin, async (req, res) => {
     }
 });
 
-router.put('/api/v1/announcement', reqAdmin, async (req, res) => {
+router.put('/api/v1/announcement', [reqAuth, reqAdmin], async (req, res) => {
     const {id, field, payload} = req.body;
 
     try {
@@ -52,7 +55,7 @@ router.put('/api/v1/announcement', reqAdmin, async (req, res) => {
     }
 });
 
-router.delete('/api/v1/announcement', reqAdmin, async (req, res) => {
+router.delete('/api/v1/announcement', [reqAuth, reqAdmin], async (req, res) => {
     const {id} = req.body;
 
     try {
