@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Course = mongoose.model('Course');
+
+const reqAuth = require('../middlewares/reqAuth');
 const reqAdmin = require('../middlewares/reqAdmin');
 
 const router = express.Router();
@@ -14,7 +16,7 @@ router.get('/courses', async (req, res) => {
     }
 });
 
-router.post('/api/v1/course', reqAdmin, async (req, res) => {
+router.post('/api/v1/course', [reqAuth, reqAdmin], async (req, res) => {
     const {title, slug, description, teacher, time, zoomId, registerUrl, attachment} = req.body;
     
     try {

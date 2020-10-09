@@ -28,13 +28,17 @@ const app = express();
 app.use(cors());
 
 app.use(bodyParser.json());
+
 app.use(authRoutes);
+
 app.use(configRoutes);
 app.use(announcementRoutes);
 app.use(courseRoutes);
 app.use(documentRoutes);
+
 app.use(userRoutes);
 app.use(noteRoutes);
+
 app.use(audioRoutes);
 
 const PASSWORD = 'SI2H90gF7YR8Q7M8';
