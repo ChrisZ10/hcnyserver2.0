@@ -9,6 +9,10 @@ const configurationSchema = mongoose.Schema({
         type: String,
         default: ''
     },
+    sermonImageTitle: {
+        type: String,
+        default: ''
+    },
     youtubeChannelUrl: {
         type: String,
         default: ''
