@@ -9,6 +9,7 @@ require('./models/Announcement');
 require('./models/Note');
 require('./models/Course');
 require('./models/Document');
+require('./models/Prayer');
 
 require('./models/audio/Track');
 require('./models/audio/Album');
@@ -22,6 +23,7 @@ const noteRoutes = require('./routes/noteRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const documentRoutes = require('./routes/documentRoutes');
 const audioRoutes = require('./routes/audioRoutes');
+const prayerRoutes = require('./routes/prayerRoutes');
 
 const app = express();
 
@@ -35,6 +37,7 @@ app.use(configRoutes);
 app.use(announcementRoutes);
 app.use(courseRoutes);
 app.use(documentRoutes);
+app.use(prayerRoutes);
 
 app.use(userRoutes);
 app.use(noteRoutes);
