@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const trackSchema = new mongoose.Schema({
+    index: {
+        type: Number,
+        required: true
+    },
     title: {
         type: String,
         required: true
