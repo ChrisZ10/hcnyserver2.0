@@ -54,15 +54,15 @@ router.get('/albums', async (req, res) => {
 });
 
 router.post('/api/v1/tracks', [reqAuth, reqAdmin], async (req, res) => {
-    const {title, slug, uri, album_slug} = req.body;
+    const {index, title, slug, uri, album_slug} = req.body;
     
     try {
         const album = await Album.findOne({slug: album_slug});
         let track;
         if (album) {
-            track = new Track({title, slug, uri, album: album._id});
+            track = new Track({index, title, slug, uri, album: album._id});
         } else {
-            track = new Track({title, slug, uri});
+            track = new Track({index, title, slug, uri});
         }
         await track.save();
         res.send(track);
@@ -72,15 +72,15 @@ router.post('/api/v1/tracks', [reqAuth, reqAdmin], async (req, res) => {
 });
 
 router.post('/api/v1/albums', [reqAuth, reqAdmin], async (req, res) => {
-    const {title, slug, playlist_slug, tags} = req.body;
+    const {index, title, slug, playlist_slug, tags} = req.body;
     
     try {
         const playlist = await Playlist.findOne({slug: playlist_slug});
         let album;
         if (playlist) {
-            album = new Album({title, slug, playlist: playlist._id});
+            album = new Album({index, title, slug, playlist: playlist._id});
         } else {
-            album = new Album({title, slug});
+            album = new Album({index, title, slug});
         }
         album.tags = [...tags];
         await album.save();
@@ -91,10 +91,10 @@ router.post('/api/v1/albums', [reqAuth, reqAdmin], async (req, res) => {
 });
 
 router.post('/api/v1/playlists', [reqAuth, reqAdmin], async (req, res) => {
-    const {title, slug} = req.body;
+    const {index, title, slug} = req.body;
     
     try {
-        const playlist = new Playlist({title, slug});
+        const playlist = new Playlist({index, title, slug});
         await playlist.save();
         res.send(playlist);
     } catch (err) {
