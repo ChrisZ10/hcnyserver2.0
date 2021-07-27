@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 
 require('./models/Configuration');
@@ -29,7 +28,8 @@ const app = express();
 
 app.use(cors());
 
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(authRoutes);
 
