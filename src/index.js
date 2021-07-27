@@ -15,7 +15,7 @@ require('./models/audio/Album');
 require('./models/audio/Playlist');
 
 const {authRoutes} = require('./routes/authRoutes');
-const formRoutes = require('./routes/formRoutes');
+const {formRoutes} = require('./routes/formRoutes');
 const configRoutes = require('./routes/configRoutes');
 const userRoutes = require('./routes/userRoutes');
 const announcementRoutes = require('./routes/announcementRoutes');
