@@ -29,3 +29,9 @@ router.post('/api/v1/contact', async (req, res) => {
   })
 });
 
+module.exports = {
+  formRoutes: router,
+  address: GMAIL_ADDRESS,
+  password: GMAIL_PASSWORD
+};
+

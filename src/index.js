@@ -15,6 +15,7 @@ require('./models/audio/Album');
 require('./models/audio/Playlist');
 
 const {authRoutes} = require('./routes/authRoutes');
+const formRoutes = require('./routes/formRoutes');
 const configRoutes = require('./routes/configRoutes');
 const userRoutes = require('./routes/userRoutes');
 const announcementRoutes = require('./routes/announcementRoutes');
@@ -32,7 +33,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(authRoutes);
-
+app.use(formRoutes);
 app.use(configRoutes);
 app.use(announcementRoutes);
 app.use(courseRoutes);
