@@ -14,13 +14,28 @@ const mailer = nodemailer.createTransport({
   }
 });
 
-router.post('/api/v1/contact', async (req, res) => {
+router.post('/api/v1/contact-form', async (req, res) => {
   const { firstName, lastName, email, phone, message } = req.body;
   mailer.sendMail({
     from: GMAIL_ADDRESS,
     to: GMAIL_ADDRESS,
     subject: `Message from ${lastName}, ${firstName}`,
     html: `${message} | ${email} | ${phone}`
+  }, (err, info) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.json({success: true});
+  })
+});
+
+router.post('/api/v1/prayer-request-form', async (req, res) => {
+  const { firstName, lastName, email, phone, prayerRequest } = req.body;
+  mailer.sendMail({
+    from: GMAIL_ADDRESS,
+    to: GMAIL_ADDRESS,
+    subject: `Prayer Request from ${lastName}, ${firstName}`,
+    html: `${prayerRequest} | ${email} | ${phone}`
   }, (err, info) => {
     if (err) {
       return res.status(500).send(err);
