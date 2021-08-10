@@ -30,12 +30,18 @@ router.post('/api/v1/contact-form', async (req, res) => {
 });
 
 router.post('/api/v1/prayer-request-form', async (req, res) => {
-  const { firstName, lastName, email, phone, prayerRequest } = req.body;
+  const { firstName, lastName, email, phone, prayerRequest, open } = req.body;
+  let content = `${prayerRequest} | ${email} | ${phone}`;
+  if (open === 't') {
+    content + "| 公開代禱事項"
+  } else {
+    content + "| 不公開代禱事項"
+  }
   mailer.sendMail({
     from: GMAIL_ADDRESS,
     to: GMAIL_ADDRESS,
     subject: `Prayer Request from ${lastName}, ${firstName}`,
-    html: `${prayerRequest} | ${email} | ${phone}`
+    html: content
   }, (err, info) => {
     if (err) {
       return res.status(500).send(err);
