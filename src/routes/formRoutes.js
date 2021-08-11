@@ -51,16 +51,60 @@ router.post('/api/v1/prayer-request-form', async (req, res) => {
 
 router.post('/api/v1/connection-form', async (req, res) => { 
   const { firstName, lastName, gender, email, phone, address, city, state, zip, status, age, about, ref } = req.body;
-  let content = `姓名：${lastName} ${firstName} ${gender} | ${email}`;
+  let content = `姓名：${lastName} ${firstName}`;
+  content += gender === 'm'? ' 先生' : ' 女士';
+  content += ` | ${email}`;
   content += phone? ` | ${phone}` : ``;
   content += address? ` | ${address}` : ``;
   content += city? ` | ${city}` : ``;
   content += state? ` | ${state}` : ``;
   content += zip? ` | ${zip}` : ``;
-  content += status? ` | ${status}` : ``;
-  content += age? ` | ${age}` : ``;
+  if (status) {
+    switch (status) {
+      case 'resident':
+        content += ' | 定居';
+        break;
+      case 'newbie':
+        content += ' | 新搬到這裡';
+        break;
+      case 'traveler':
+        content += ' | 旅遊';
+        break;
+      default:
+    }
+  }
+  if (age) {
+    switch (age) {
+      case '-20':
+        content += ' | 20歲及以下';
+        break;
+      case '21-30':
+        content += ' | 21-30歲';
+        break;
+      case '31-50':
+        content += ' | 31-50歲';
+        break;
+      case '51+':
+        content += ' | 51歲及以上';
+        break;
+      default:
+    }
+  }
   if (about.length > 0) {
-    about.map( item => content += ` | ${item}` );
+    about.map(( item ) => {
+      switch (item) {
+        case 'christian':
+          content += ' | 我已是基督徒';
+          break;
+        case 'prospect':
+          content += ' | 我願意成為基督徒徒';
+          break;
+        case 'visit':
+          content += ' | 我希望牧師前來探訪';
+          break;
+        default:
+      } 
+    });
   }
   content += ref? ` | 在教會的親友：${ref}` : ``;
   mailer.sendMail({
